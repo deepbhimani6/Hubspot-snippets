@@ -1,0 +1,51 @@
+// Array Append Methods with Content_by_ids select Blog (using page field)
+
+{% set blogs = [] %}
+
+{% for item2 in item.mega_menu.resources_blog %}
+
+{% do blogs.append(item2.page_field) %}
+
+{% endfor %}
+
+{% set myContent = content_by_ids(blogs) %}
+
+{% for content in myContent %}
+    <a href="{{ content.absolute_url }}">{{ content.title }}</a>
+{% endfor %}
+
+{% set href = item.mega_menu.see_all_link.url.href %}
+{% if item.mega_menu.see_all_link.url.type is equalto "EMAIL_ADDRESS" %}
+{% set href = "mailto:" + href %}
+{% endif %}
+{% if item.mega_menu.see_all_link.url.href %}
+{% set href = "javascript:void(0);" %}
+{% endif %}
+<a href="{{ href }}"
+{% if item.mega_menu.see_all_link.open_in_new_tab %}target="_blank"{% endif %}
+{% if item.mega_menu.see_all_link.rel %}rel="{{ item.mega_menu.see_all_link.rel }}"{% endif %}
+>
+See all
+</a>
+
+
+...................// custom blog select option //.......................
+
+{% set contents = null %}
+
+{% if module.choose_the_post_manually %}
+
+{% set blogs = [] %}
+
+{% for item in module.blog_posts %}
+  {% do blogs.append(item.blog_post) %}
+{% endfor %}
+
+{% set contents = content_by_ids(blogs) %}
+
+{% else %}
+
+{% set contents = blog_recent_posts(module.blog , 3) %}
+
+{% endif %}
+  

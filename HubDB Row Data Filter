@@ -1,0 +1,51 @@
+<h1>Filtered HubDB Table Data</h1>
+
+<label for="category-select">Select Category:</label>
+<select id="category-select">
+    <option value="">All Categories</option>
+    <option value="Books">Books</option>
+    <option value="Electronics">Electronics</option>
+    <!-- Add other options based on your HubDB table data -->
+</select>
+
+<ul id="filtered-data"></ul>
+
+
+<script>
+    // Fetch data from HubDB table using AJAX
+    function fetchData(category) {
+        $.ajax({
+            url: 'https://api.hubspot.com/cms/v3/hubdb/tables/YOUR_TABLE_ID/rows',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Bearer YOUR_HUBSPOT_API_KEY'
+            },
+            success: function (response) {
+                // Filter data based on criteria (e.g., column value)
+                var filteredData = response.results.filter(function (row) {
+                    // Check if category is selected or if row category matches
+                    return category === '' || row.values.category === category;
+                });
+
+                // Display filtered data
+                var filteredList = $('#filtered-data');
+                filteredList.empty(); // Clear previous results
+                filteredData.forEach(function (row) {
+                    filteredList.append('<li>' + row.values.title + '</li>');
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+
+    // Event handler for select change
+    $('#category-select').on('change', function () {
+        var selectedCategory = $(this).val();
+        fetchData(selectedCategory);
+    });
+
+    // Initial data fetch
+    fetchData('');
+</script>

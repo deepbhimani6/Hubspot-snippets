@@ -1,0 +1,33 @@
+{% module "module_170592975926814" path="module path", label="Page Settings", export_to_template_context=True %}
+
+
+{% set header_visibility = widget_data.module_170592975926814.hide_header %}
+
+{% block header %}
+{% if !header_visibility %}
+{% module "module_17031348058217" path="module path", label="header" %}
+{% endif %}
+{% endblock header %}
+
+
+
+// With Dnd 
+
+{% block footer %}
+{% set footer_visibility = widget_data.module_17080568107546.hide_footer %}
+
+{% if !footer_visibility %}
+<footer class="bg-gray">
+  <div class="container">
+    <div class="footer-content flex flex-col">
+      {% dnd_area 'overlapping-section' %}
+
+      {% end_dnd_area %}
+
+      {% module "module_17080568107546" path="module path", label="Global Footer" %} 
+    </div>
+  </div>
+</footer> 
+{% endif %}
+
+{% endblock footer %} 

@@ -1,0 +1,107 @@
+<div class="blog-post-listing blog-post section-gap">
+  <div class="container">
+    <div class="blog-post-grid">
+
+      {% if content.name %}
+      <div class="blog-post__title-wrapper">
+        <h3 class="blog-post__title truncate line-clamp-3">{{ content.name }}</h3>
+      </div>
+      {% endif %}
+      <div class="blog-post__meta">
+        <div class="blog-post__bio">
+          <div class="blog-post__avatar">
+            <img src="{{ content.blog_author.avatar  }}" alt="author">
+          </div>
+          <div>
+            <div class="blog-post__author">
+              <a href="javascript:void(0);">
+                {{ content.blog_post_author.display_name }}
+              </a>
+            </div>
+            <div class="blog-post__block">
+              {% if content.publish_date %}
+                <div class="blog-post__timestamp">
+                  {{ content.publish_date|datetimeformat("%d.%m.%y") }}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="blog-post-wrapper flex">
+        <div class="blog-post-content">
+          <div class="blog-post__image">
+            <img src="{{ content.featured_image }}" alt="blog-lisitng-img">
+            <div class="blog-tags__item">
+              <div class="absolute listing-content-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="42" viewBox="0 0 80 42" fill="none">
+                  <path opacity="0.7" fill-rule="evenodd" clip-rule="evenodd" d="M21 0C9.40202 0 0 9.40202 0 21C0 32.598 9.40201 42 21 42H58.8C70.398 42 79.8 32.598 79.8 21C79.8 9.40202 70.398 0 58.8 0H21ZM56.3024 31.4524C59.2631 31.4524 61.7758 30.4298 63.8405 28.3846C65.9052 26.3394 66.9376 23.8169 66.9376 20.8173C66.9376 17.8176 65.9052 15.2952 63.8405 13.25C61.7758 11.2047 59.2631 10.1821 56.3024 10.1821C53.3417 10.1821 50.829 11.2047 48.7644 13.25C46.6997 15.2952 45.6673 17.8176 45.6673 20.8173C45.6673 23.8169 46.6997 26.3394 48.7644 28.3846C50.829 30.4298 53.3417 31.4524 56.3024 31.4524ZM56.3024 26.8945C54.6078 26.8945 53.1859 26.3296 52.0367 25.1999C50.907 24.0701 50.3421 22.6093 50.3421 20.8173C50.3421 19.0253 50.907 17.5644 52.0367 16.4347C53.1859 15.3049 54.6078 14.74 56.3024 14.74C57.9971 14.74 59.4092 15.3049 60.539 16.4347C61.6882 17.5644 62.2628 19.0253 62.2628 20.8173C62.2628 22.6093 61.6882 24.0701 60.539 25.1999C59.4092 26.3296 57.9971 26.8945 56.3024 26.8945ZM26.6908 15.0907H18.9482V19.035H26.5447V23.5345H18.9482V31.0434H14.2734V10.5912H26.6908V15.0907ZM37.1954 10.5912C39.2017 10.5912 40.8963 11.2729 42.2792 12.6364C43.6622 13.9999 44.3537 15.6555 44.3537 17.6033C44.3537 19.5512 43.6622 21.2068 42.2792 22.5703C40.8963 23.9338 39.2017 24.6155 37.1954 24.6155H34.1276V31.0434H29.4528V10.5912H37.1954ZM37.1954 20.2329C37.9161 20.2329 38.5102 19.9797 38.9777 19.4733C39.4451 18.9668 39.6789 18.3435 39.6789 17.6033C39.6789 16.8632 39.4451 16.2399 38.9777 15.7334C38.5102 15.227 37.9161 14.9738 37.1954 14.9738H34.1276V20.2329H37.1954Z" fill="white"></path>
+                </svg>
+              </div>
+            </div>
+          </div>
+          <div class="blog-post__body">
+            {{ content.post_body }}
+          </div>
+        </div>
+        <aside class="mobile-none">
+          <div>
+            
+            <!-- <div class="blog-post-listing--search">
+              <h4>Search</h4>
+              <form action="">
+                <div class="search-input relative">
+                  <input type="search" name="search">
+                  <div class="search-icon absolute">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M19.0002 19.0002L14.6572 14.6572M14.6572 14.6572C15.4001 13.9143 15.9894 13.0324 16.3914 12.0618C16.7935 11.0911 17.0004 10.0508 17.0004 9.00021C17.0004 7.9496 16.7935 6.90929 16.3914 5.93866C15.9894 4.96803 15.4001 4.08609 14.6572 3.34321C13.9143 2.60032 13.0324 2.01103 12.0618 1.60898C11.0911 1.20693 10.0508 1 9.00021 1C7.9496 1 6.90929 1.20693 5.93866 1.60898C4.96803 2.01103 4.08609 2.60032 3.34321 3.34321C1.84288 4.84354 1 6.87842 1 9.00021C1 11.122 1.84288 13.1569 3.34321 14.6572C4.84354 16.1575 6.87842 17.0004 9.00021 17.0004C11.122 17.0004 13.1569 16.1575 14.6572 14.6572Z" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>                                            
+                  </div>
+                </div>
+              </form>
+            </div> -->
+            
+              {% module "module_170244324736913" path="/Ghsystems-2023/modules/Blog Post Newsletter", label="Blog Post Newsletter" %}
+          </div>
+        </aside>
+      </div>
+      <div class="social-tag">
+        <div class="blog-post__tags flex">
+          <p>
+            Tags:
+            {% for tag in content.tag_list %}
+            <a class="blog-post__tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>
+            {% endfor %}    
+          </p>
+        </div>
+        <div class="blog-post__social-icon-block">
+          <p>Share this post:</p>
+          <div class="flex social-icon-wrapper">
+            <a href="https://www.twitter.com/share?url={{ content.absolute_url }}" target="_blank" class="social-icon">
+              <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 2.23529C23.1166 2.62647 22.1644 2.88353 21.1778 3.00647C22.1874 2.41412 22.9675 1.47529 23.3346 0.346471C22.3824 0.905294 21.327 1.29647 20.2141 1.52C19.3078 0.558824 18.0344 0 16.5889 0C13.8929 0 11.6902 2.14588 11.6902 4.79471C11.6902 5.17471 11.7361 5.54353 11.8164 5.89C7.73231 5.68882 4.0956 3.77765 1.67495 0.882941C1.25048 1.58706 1.00956 2.41412 1.00956 3.28588C1.00956 4.95118 1.86998 6.42647 3.20077 7.26471C2.38623 7.26471 1.62906 7.04118 0.963671 6.70588V6.73941C0.963671 9.06412 2.66157 11.0088 4.91013 11.4447C4.18822 11.6372 3.43032 11.664 2.69599 11.5229C3.00758 12.4757 3.61782 13.3094 4.44094 13.9068C5.26405 14.5042 6.25864 14.8353 7.2849 14.8535C5.54527 16.1952 3.38891 16.9204 1.17017 16.91C0.780115 16.91 0.390057 16.8876 0 16.8429C2.17973 18.2065 4.77247 19 7.54876 19C16.5889 19 21.5564 11.6906 21.5564 5.35353C21.5564 5.14118 21.5564 4.94 21.5449 4.72765C22.5086 4.05706 23.3346 3.20765 24 2.23529Z" fill="currentcolor"/>
+              </svg>                                    
+            </a>
+            <a href="http://www.facebook.com/share?url={{ content.absolute_url }}" target="_blank" class="social-icon">
+              <svg width="11" height="21" viewBox="0 0 11 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.33333 12.075H9.95238L11 7.875H7.33333V5.775C7.33333 4.6935 7.33333 3.675 9.42857 3.675H11V0.147C10.6585 0.10185 9.36886 0 8.00695 0C5.16267 0 3.14286 1.73985 3.14286 4.935V7.875H0V12.075H3.14286V21H7.33333V12.075Z" fill="currentcolor"/>
+              </svg>                                                                     
+            </a>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url={{ content.absolute_url }}" target="_blank" class="social-icon">
+              <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4.96285 2.73835C4.96256 3.30322 4.7379 3.84485 4.33827 4.24407C3.93865 4.6433 3.3968 4.86743 2.83192 4.86714C2.26705 4.86686 1.72542 4.64219 1.32619 4.24257C0.926967 3.84294 0.702843 3.30109 0.703125 2.73622C0.703408 2.17134 0.928074 1.62972 1.3277 1.23049C1.72733 0.831264 2.26918 0.60714 2.83405 0.607422C3.39892 0.607705 3.94055 0.832371 4.33978 1.232C4.739 1.63162 4.96313 2.17347 4.96285 2.73835ZM5.02674 6.4443H0.767021V19.7772H5.02674V6.4443ZM11.7571 6.4443H7.51868V19.7772H11.7145V12.7806C11.7145 8.88299 16.7942 8.52092 16.7942 12.7806V19.7772H21.0007V11.3323C21.0007 4.76171 13.4823 5.00665 11.7145 8.23339L11.7571 6.4443Z" fill="currentcolor"/>
+              </svg>                                
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Box with Content start -->
+      {% module "module_170203840949348" path="/Blog Post Talk To Expert", label="Blog Post Talk To Expert" %} 
+      <!-- Box with Content end -->
+      <div class="dekstop-none">
+         {% module "module_170244323371711" path="/Ghsystems-2023/modules/Blog Post Newsletter", label="Blog Post Newsletter" %}
+      </div>
+    </div>
+
+  </div>
+</div>

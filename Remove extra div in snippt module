@@ -1,0 +1,3 @@
+Ex = {% module "module_17060692384091" path="../../modules/global-footer", label="Global Footer", no_wrapper=True %}
+
+"no_wrapper=True" is important for this 

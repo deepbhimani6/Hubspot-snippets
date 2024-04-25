@@ -1,0 +1,28 @@
+// add portalId 
+// add formId
+
+
+<div data-form="{{ name }}">
+    <script>
+    (() => {
+      const script = document.createElement("script");
+      script.setAttribute("type", "text/javascript");
+      script.src = "https://js.hsforms.net/forms/embed/v2.js";
+
+      script.addEventListener("load", () => {
+        hbspt.forms.create({
+          region: "na1",
+          portalId: "",
+          formId: "{{ add form dynamic id }}",
+          css:'',
+          target: "[data-form='{{ name }}']",
+           onFormSubmit: function($form) {
+               $('.newsletter-title').hide();
+               $('.content-global-form').hide();
+           }
+        });
+      });
+      document.head.append(script);
+    })();
+  </script>   
+</div>

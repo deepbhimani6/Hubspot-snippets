@@ -1,0 +1,3 @@
+{% for tag in content.tag_list %}
+   <a class="blog-post__tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
+{% endfor %}

@@ -1,0 +1,2 @@
+{% global_partial path="your-partails-path" %}
+{example header partails footer partails any or section partical }

@@ -1,0 +1,8 @@
+{% if request.postDict.inpageEditorUI %}
+  {# will only display if page is being viewed in the editor and edit mode #}
+{% endif %}
+
+
+{% if is_in_editor %}
+  {# will only display if page is being viewed in the editor #}
+{% endif %}

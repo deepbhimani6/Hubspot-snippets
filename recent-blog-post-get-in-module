@@ -1,0 +1,29 @@
+{% set contents = blog_recent_posts("default", 3) %}
+{% for content in contents %}
+{% if loop.index <= 3 %}
+  <div class="card-main">
+    <a href="{{ content.absolute_url }}" class="card theme-radius text-white flex flex-col overflow-hidden h-full">
+      {% if content.featured_image %}
+      <div class="relative">
+        <div class="img-card overflow-hidden">              
+          <img src="{{ content.featured_image }}" class="img-cover transition">
+        </div>    
+      </div>
+      {% endif %}     
+      <div class="card-content flex flex-col justify-between">
+        <div class="">
+          <h3>{{ content.name }}</h3>
+          <div class="richtext">
+            {{ content.post_body|striptags|truncate(100, True, "...") }}
+          </div>
+        </div>
+        <div class="card-link">
+          <span>{{ module.cta_text }}</span>
+        </div>
+      </div>
+    </a>
+  </div>
+{% endif %}
+{% endfor %}
+
+content.publish_date|datetimeformat("%d.%m.%y")

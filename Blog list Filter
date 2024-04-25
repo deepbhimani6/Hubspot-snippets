@@ -1,0 +1,30 @@
+<li>
+  <a href="{{ group.absolute_url }}" class="{% if !tag %}active{% endif %}">All</a>
+</li>
+
+{% for item in module.tags %}
+  <li>
+    <a href="{{ blog_tag_url(group.id, item.tag.slug) }}" class="{% if tag == item.tag.slug %}active{% endif %}">{{ item.tag.name }}</a>
+  </li>
+{% endfor %}
+
+
+
+// Others Tag Listing 
+
+{% for item in module.other_tags %}
+  <li>
+    <a href="{{ blog_tag_url(group.id, item.tag.slug) }}">{{ item.tag.name }}</a>
+  </li>
+
+  {% if tag == item.tag.slug %}
+    {% require_js %}
+      <script>
+        var text = "{{ item.tag.name }}";
+        console.log(text)
+        $(".drop-down .selected > div span").html(text).addClass('option-text');
+      </script>
+    {% end_require_js %}
+  {% endif %}
+
+{% endfor %}

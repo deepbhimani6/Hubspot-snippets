@@ -1,0 +1,60 @@
+Jyare Blog Select no option Aapi Tyare Tene Tag Select kar vano option pan Aap vano like 
+
+Hubspot field :
+
+Tag field 
+
+Blog Field 
+
+Single post mate Page Field
+
+{% set contents = blog_recent_tag_posts(module.blog, [module.tag], module.no_of_posts) %}
+
+
+
+{#
+
+{% set blogs = [] %}
+
+{% for item in module.related_post %}
+{% do blogs.append(item.blog_post) %}
+{% endfor %}
+
+{% set contents = content_by_ids(blogs) %}
+
+#}
+
+
+
+{% set contents = null %}
+
+{% set contents = blog_recent_tag_posts(module.blog, [module.tag], module.no_of_posts) %}
+
+<div class="two-column-section">
+<div class="container">
+  <div class="three-column-grid">
+    {% for content in contents  %}
+    <div class="img-with-text-card img-hover">
+      {% if content.featured_image %}
+      <div class="img-box overflow-hidden">
+        <img src="{{ content.featured_image }}" class="object-cover" alt="card-img">
+      </div>
+      {% endif %}
+      {% if content.title %}
+      <div class="sub-title">{{ content.title }}</div>
+      {% endif %}
+      {% if content.post_body %}
+      <div class="rich-text text-dark">
+        {{ content.post_body|striptags|truncate(200, True, "...") }}
+      </div>
+      {% endif %}
+      {% if module.labeled %}  
+      <div class="btn-group">
+        <a href="{{ content.absolute_url }}" class="btn">{{ module.labeled }}</a>
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+</div>

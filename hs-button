@@ -1,0 +1,30 @@
+{% if module.add_button %}
+
+  {% if module.button.button_type == 'link' %}
+
+    {% if module.button.button_label %}
+      {% set href = module.button.button_link.url.href %}
+      {% if module.button.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% elif module.button.button_link.url.type is equalto "PHONE_NUMBER" %}
+        {% set href = "tel:"  %}
+      {% elif !module.button.button_link.url.href %}
+       {% set href = "javascript:void(0)" + href %}
+    {% endif %}
+      <a href="{{ href }}"
+        {% if module.button.button_link.open_in_new_tab and module.button.button_link.url.href %}target="_blank"{% endif %}
+        {% if module.button.button_link.rel %}rel="{{ module.button.button_link.rel }}"{% endif %}>
+        {{ module.button.button_label }}
+      </a>
+    {% endif %}
+
+  {% elif module.button.button_type == 'cta'  %}
+
+    {% if module.button.cta %}
+      <span>
+        {% cta guid="{{ module.button.cta }}" %}
+      </span>
+    {% endif %}
+  {% endif %}
+
+{% endif %}
